@@ -238,77 +238,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#020d1a;color:#d6eef
 .lg-footer b{color:var(--t4);}
 
 /* ══════════════════════════════════════
-   GAME SELECT
-══════════════════════════════════════ */
-#gs{z-index:15;background:var(--bg);flex-direction:column;align-items:stretch;overflow:hidden;}
-.gs-wrap{width:100%;height:100%;display:flex;flex-direction:column;max-width:460px;margin:0 auto;}
-
-.gs-top{
-  padding:44px 22px 20px;text-align:center;flex-shrink:0;
-  background:linear-gradient(180deg,rgba(14,165,233,.07) 0%,transparent 100%);
-  border-bottom:1px solid var(--bdr3);position:relative;
-}
-.gs-top::after{content:'';position:absolute;bottom:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,rgba(14,165,233,.3),transparent);}
-.gs-title{font-family:var(--hud);font-size:17px;font-weight:900;color:var(--sky2);letter-spacing:4px;text-shadow:0 0 22px rgba(14,165,233,.45);margin-bottom:4px;}
-.gs-sub{font-family:var(--mono);font-size:8px;letter-spacing:3px;color:var(--t2);}
-
-.gs-cards{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:18px 16px 16px;overflow:hidden;}
-
-.gcard{
-  position:relative;border-radius:22px;overflow:hidden;
-  background:var(--card);border:1px solid var(--bdr3);
-  cursor:pointer;display:flex;flex-direction:column;
-  transition:border-color .22s,box-shadow .22s,transform .16s;
-  box-shadow:0 8px 28px rgba(0,0,0,.55);
-}
-.gcard:active{transform:scale(.95);}
-.gcard.sel{border-color:rgba(56,189,248,.45);box-shadow:0 0 0 2px rgba(56,189,248,.15),0 12px 40px rgba(14,165,233,.2);}
-.gcard.sel::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(56,189,248,.55),transparent);z-index:10;}
-
-.gcard-img{flex:1;overflow:hidden;position:relative;min-height:0;}
-.gcard-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
-.gcard-img .fb-ico{display:none;position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:linear-gradient(160deg,rgba(4,15,30,.9),rgba(6,20,40,.98));}
-.gcard-img img.err{display:none;}
-.gcard-img img.err~.fb-ico{display:flex;}
-.gcard-img-grad{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(0deg,rgba(2,10,20,.98) 0%,transparent 100%);}
-
-.gcard-check{
-  position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;
-  background:var(--sky);display:none;align-items:center;justify-content:center;
-  box-shadow:0 0 12px rgba(14,165,233,.7);z-index:10;
-}
-.gcard.sel .gcard-check{display:flex;}
-
-.gcard-body{padding:11px 12px 13px;flex-shrink:0;}
-.gcard-name{font-family:var(--hud);font-size:10px;font-weight:900;color:var(--t1);letter-spacing:1px;display:block;margin-bottom:2px;}
-.gcard-name.gld{color:#fbbf24;}
-.gcard-pkg{font-family:var(--mono);font-size:6px;color:rgba(14,165,233,.4);letter-spacing:.3px;display:block;margin-bottom:10px;}
-.gcard-launch{
-  width:100%;padding:9px 4px;
-  background:linear-gradient(135deg,rgba(14,165,233,.16),rgba(56,189,248,.07));
-  border:1px solid rgba(14,165,233,.25);border-radius:9px;
-  font-family:var(--hud);font-size:8px;letter-spacing:2.5px;color:var(--sky2);
-  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;
-  transition:background .18s,border-color .18s;
-}
-.gcard-launch:active{background:rgba(14,165,233,.28);}
-.gcard-launch.mx{border-color:rgba(125,211,252,.25);color:var(--sky3);}
-
-.gs-foot{padding:0 16px 24px;flex-shrink:0;}
-.btn-gs{
-  width:100%;padding:16px;
-  background:linear-gradient(150deg,#002244 0%,#004e9e 46%,var(--sky) 78%,var(--sky2) 100%);
-  border:none;border-radius:15px;color:#fff;
-  font-family:var(--hud);font-size:10.5px;font-weight:700;letter-spacing:4px;
-  cursor:pointer;position:relative;overflow:hidden;
-  transition:transform .12s,filter .18s;
-  box-shadow:0 8px 30px rgba(14,165,233,.26),0 0 0 1px rgba(255,255,255,.07) inset;
-}
-.btn-gs::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.11) 0%,transparent 50%);pointer-events:none;}
-.btn-gs:active{transform:scale(.974);filter:brightness(.82);}
-.btn-gs:disabled{opacity:.3;cursor:not-allowed;transform:none!important;}
-
-/* ══════════════════════════════════════
    MAIN PANEL
 ══════════════════════════════════════ */
 #mp{flex-direction:column;align-items:stretch;justify-content:flex-start;overflow:hidden;z-index:10;}
@@ -774,80 +703,6 @@ html,body{width:100%;height:100%;overflow:hidden;background:#020d1a;color:#d6eef
   </div>
 </div>
 
-<!-- ══════════ GAME SELECT ══════════ -->
-<div id="gs" class="scr">
-  <div class="gs-wrap">
-    <div class="gs-top">
-      <div class="gs-title">SELECT TARGET GAME</div>
-      <div class="gs-sub">CHOOSE GAME — TAP TO SELECT — LAUNCH TO OPEN</div>
-    </div>
-
-    <div class="gs-cards">
-      <!-- FREE FIRE TH -->
-      <div class="gcard" id="gcFF" onclick="gsSelect('FF')">
-        <div class="gcard-img">
-          <img src="https://raw.githubusercontent.com/mdzzxiters/zx-assets/main/ff-th.jpg"
-               alt="Free Fire" onerror="this.classList.add('err')"/>
-          <div class="fb-ico">
-            <svg width="46" height="46" viewBox="0 0 52 52" fill="none">
-              <polygon points="26,2 50,15 50,37 26,50 2,37 2,15" stroke="var(--sky)" stroke-width="2" fill="rgba(14,165,233,.07)"/>
-              <path d="M16 26L26 16L36 26L26 36Z" fill="var(--sky)"/>
-            </svg>
-            <span style="font-family:var(--hud);font-size:7px;color:rgba(56,189,248,.6);letter-spacing:2px;">FREE FIRE</span>
-          </div>
-          <div class="gcard-img-grad"></div>
-        </div>
-        <div class="gcard-check">
-          <svg width="11" height="9" viewBox="0 0 12 10" fill="none">
-            <path d="M1 5l4 4 6-8" stroke="#020d1a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="gcard-body">
-          <span class="gcard-name">FREE FIRE</span>
-          <span class="gcard-pkg">com.dts.freefireth</span>
-          <button class="gcard-launch" onclick="event.stopPropagation();gsLaunch('FF')" type="button">
-            <svg width="9" height="9" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1,1 9,5 1,9"/></svg>
-            LAUNCH
-          </button>
-        </div>
-      </div>
-
-      <!-- FREE FIRE MAX -->
-      <div class="gcard" id="gcFFMAX" onclick="gsSelect('FFMAX')">
-        <div class="gcard-img">
-          <img src="https://raw.githubusercontent.com/mdzzxiters/zx-assets/main/ff-max.jpg"
-               alt="Free Fire MAX" onerror="this.classList.add('err')"/>
-          <div class="fb-ico">
-            <svg width="46" height="46" viewBox="0 0 52 52" fill="none">
-              <polygon points="26,2 50,15 50,37 26,50 2,37 2,15" stroke="var(--sky3)" stroke-width="2" fill="rgba(125,211,252,.06)"/>
-              <text x="26" y="30" fill="var(--sky3)" font-size="10" font-family="Orbitron" font-weight="900" text-anchor="middle">MAX</text>
-            </svg>
-            <span style="font-family:var(--hud);font-size:7px;color:rgba(125,211,252,.6);letter-spacing:2px;">FF MAX</span>
-          </div>
-          <div class="gcard-img-grad"></div>
-        </div>
-        <div class="gcard-check">
-          <svg width="11" height="9" viewBox="0 0 12 10" fill="none">
-            <path d="M1 5l4 4 6-8" stroke="#020d1a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="gcard-body">
-          <span class="gcard-name gld">FREE FIRE MAX</span>
-          <span class="gcard-pkg">com.dts.freefiremax</span>
-          <button class="gcard-launch mx" onclick="event.stopPropagation();gsLaunch('FFMAX')" type="button">
-            <svg width="9" height="9" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1,1 9,5 1,9"/></svg>
-            LAUNCH
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="gs-foot">
-      <button class="btn-gs" id="btnGsGo" onclick="gsConfirm()" type="button" disabled>MASUK PANEL</button>
-    </div>
-  </div>
-</div>
-
 <!-- ══════════ MAIN PANEL ══════════ -->
 <div id="mp" class="scr">
   <!-- topbar -->
@@ -1003,14 +858,14 @@ html,body{width:100%;height:100%;overflow:hidden;background:#020d1a;color:#d6eef
         <div class="sens-head">
           <div class="sens-title-wrap">
             <span class="sens-title">SENSITIVITY XY</span>
-            <span class="sens-desc">AXIS CONTROL — GIROSKOP CALIBRATION</span>
+            <span class="sens-desc">AXIS CONTROL — SENSITIVITY CALIBRATION</span>
           </div>
           <span class="sens-badge">ACTIVE</span>
         </div>
         <div class="sens-body">
           <div class="sens-row"><span class="sens-lbl">X-AXIS</span><input type="range" class="sens-slider" id="sldX" min="1" max="100" value="60" oninput="gi('valX').textContent=this.value"/><span class="sens-val" id="valX">60</span></div>
           <div class="sens-row"><span class="sens-lbl">Y-AXIS</span><input type="range" class="sens-slider" id="sldY" min="1" max="100" value="55" oninput="gi('valY').textContent=this.value"/><span class="sens-val" id="valY">55</span></div>
-          <div class="sens-row"><span class="sens-lbl">GYRO</span><input type="range" class="sens-slider" id="sldG" min="1" max="100" value="68" oninput="gi('valG').textContent=this.value"/><span class="sens-val" id="valG">68</span></div>
+          <div class="sens-row"><span class="sens-lbl">GENERAL</span><input type="range" class="sens-slider" id="sldG" min="1" max="100" value="68" oninput="gi('valG').textContent=this.value"/><span class="sens-val" id="valG">68</span></div>
           <button class="btn-sens" onclick="applySens()" type="button">APPLY SENSITIVITY XY</button>
         </div>
       </div>
@@ -1029,7 +884,7 @@ html,body{width:100%;height:100%;overflow:hidden;background:#020d1a;color:#d6eef
           <div class="sens-row"><span class="sens-lbl">NO SCOPE</span><input type="range" class="sens-slider" id="sldN" min="1" max="100" value="78" oninput="gi('valN').textContent=this.value"/><span class="sens-val" id="valN">78</span></div>
           <div class="sens-row"><span class="sens-lbl">2x SCOPE</span><input type="range" class="sens-slider" id="sld2" min="1" max="100" value="65" oninput="gi('val2').textContent=this.value"/><span class="sens-val" id="val2">65</span></div>
           <div class="sens-row"><span class="sens-lbl">4x SCOPE</span><input type="range" class="sens-slider" id="sld4" min="1" max="100" value="50" oninput="gi('val4').textContent=this.value"/><span class="sens-val" id="val4">50</span></div>
-          <div class="sens-row"><span class="sens-lbl">8x SCOPE</span><input type="range" class="sens-slider" id="sld8" min="1" max="100" value="36" oninput="gi('val8').textContent=this.value"/><span class="sens-val" id="val8">36</span></div>
+          <div class="sens-row"><span class="sens-lbl">M1887 SMG</span><input type="range" class="sens-slider" id="sld8" min="1" max="100" value="36" oninput="gi('val8').textContent=this.value"/><span class="sens-val" id="val8">36</span></div>
           <button class="btn-sens" onclick="applyPrivSens()" type="button">APPLY SENSI PRIVATE</button>
         </div>
       </div>
@@ -1310,47 +1165,6 @@ function switchTab(idx){
 }
 window.switchTab=switchTab;
 
-/* ── Game Select page ── */
-var gsChosen=null;
-function gsSelect(g){
-  SFX.click();gsChosen=g;
-  gi('gcFF').classList.toggle('sel',g==='FF');
-  gi('gcFFMAX').classList.toggle('sel',g==='FFMAX');
-  gi('btnGsGo').disabled=false;
-}
-window.gsSelect=gsSelect;
-
-/* ══ BLAZE-STYLE LAUNCH LOGIC ══ */
-function gsLaunch(g){
-  ensureAudio();SFX.click();
-  gsSelect(g);
-  var pkg=g==='FF'?PKG_FF:PKG_MX;
-  var deeplink=g==='FF'?'freefire://':'freefiremax://';
-  var popKey=g==='FF'?'game':'gamemx';
-  var title=g==='FF'?'LAUNCH FREE FIRE':'LAUNCH FREE FIRE MAX';
-  showPopup(popKey,title,
-    'Membuka '+(g==='FF'?'Free Fire':'Free Fire MAX')+'...\nPastikan inject telah selesai\nsebelum masuk ke match.',
-    [
-      {label:'Batal'},
-      {label:'OPEN',ok:true,cb:function(){
-        toast('Membuka '+(g==='FF'?'Free Fire':'Free Fire MAX')+'...','i',2200);
-        setTimeout(function(){window.location.href=deeplink;},900);
-      }}
-    ]);
-}
-window.gsLaunch=gsLaunch;
-
-function gsConfirm(){
-  if(!gsChosen){toast('Pilih game terlebih dahulu','e');return;}
-  SFX.ok();
-  selPkg=gsChosen==='FF'?PKG_FF:PKG_MX;
-  updateTargetUI(gsChosen);
-  var gs=gi('gs'),mp=gi('mp');
-  gs.classList.add('out');
-  setTimeout(function(){gs.classList.remove('on','out');mp.classList.add('on');if(window.buildFeats)buildFeats();},380);
-}
-window.gsConfirm=gsConfirm;
-
 /* ── Home target buttons (BLAZE-style) ── */
 var selPkg='';
 function updateTargetUI(g){
@@ -1397,16 +1211,16 @@ gi('btnFFMAX').addEventListener('click',function(){
 /* ════ FEATURES ════ */
 var FEATS=[
   {id:'sensxy',    name:'SENSITIVITY XY',     badge:'XY',    cat:'SENSITIVITY', on:false,
-   desc:'Konfigurasi sensitivitas sumbu X dan Y secara independen. Auto-kalibrasi giroskop dan touchscreen untuk kontrol crosshair presisi di semua kondisi.',
+   desc:'Konfigurasi sensitivitas sumbu X dan Y secara independen. Auto-kalibrasi general dan touchscreen untuk kontrol crosshair presisi di semua kondisi.',
    icon:'<svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="8" x2="21" y2="8" stroke="var(--sky)" stroke-width="1.4" stroke-linecap="round"/><circle cx="9" cy="8" r="2.5" fill="rgba(14,165,233,.18)" stroke="var(--sky)" stroke-width="1.4"/><line x1="3" y1="16" x2="21" y2="16" stroke="var(--sky)" stroke-width="1.4" stroke-linecap="round"/><circle cx="16" cy="16" r="2.5" fill="rgba(14,165,233,.18)" stroke="var(--sky)" stroke-width="1.4"/></svg>'},
   {id:'sensprv',   name:'SENSI PRIVATE',       badge:'PRV',   cat:'SENSITIVITY', on:false,
-   desc:'Tuning sensitivity eksklusif multi-layer: no scope, 2x, 4x, 8x, iron sight. Profil private tersimpan per senjata dan mode permainan.',
+   desc:'Tuning sensitivity eksklusif multi-layer: no scope, 2x, 4x, M1887 smg, iron sight. Profil private tersimpan per senjata dan mode permainan.',
    icon:'<svg viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6" stroke="var(--sky)" stroke-width="1.4" stroke-linecap="round"/><circle cx="7" cy="6" r="2.5" fill="rgba(14,165,233,.18)" stroke="var(--sky)" stroke-width="1.4"/><line x1="3" y1="12" x2="21" y2="12" stroke="var(--sky)" stroke-width="1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="2.5" fill="rgba(14,165,233,.18)" stroke="var(--sky)" stroke-width="1.4"/><line x1="3" y1="18" x2="21" y2="18" stroke="var(--sky)" stroke-width="1.4" stroke-linecap="round"/><circle cx="17" cy="18" r="2.5" fill="rgba(14,165,233,.18)" stroke="var(--sky)" stroke-width="1.4"/></svg>'},
   {id:'drag',      name:'DRAG ASSIST',         badge:'DRAG',  cat:'MOVEMENT',   on:false,
    desc:'Asisten drag shot otomatis mendeteksi gerak jari dan mengoptimalkan lintasan drag headshot dari segala arah dan jarak tembak.',
    icon:'<svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="var(--sky)" stroke-width="1.4" stroke-linecap="round"/><path d="M15 8l4 4-4 4" stroke="var(--sky)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5" cy="12" r="2.5" fill="rgba(14,165,233,.18)" stroke="var(--sky)" stroke-width="1.4"/></svg>'},
   {id:'tweak',     name:'TWEAK SETTINGS',      badge:'TWEAK', cat:'SETTINGS',   on:false,
-   desc:'Penyesuaian pengaturan game mendalam: render distance, frame cap, dan opsi grafis tersembunyi untuk gameplay yang dioptimalkan.',
+   desc:'Penyesuaian pengaturan game mendalam:  distance, frame cap, dan opsi grafis tersembunyi untuk gameplay yang dioptimalkan.',
    icon:'<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="var(--sky)" stroke-width="1.4"/><path d="M12 1v3M12 20v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M1 12h3M20 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="var(--sky)" stroke-width="1.4" stroke-linecap="round"/></svg>'},
   {id:'respscr',   name:'RESPONSIBLE SCREEN',  badge:'SCR',   cat:'SETTINGS',   on:false,
    desc:'Optimasi respons layar sentuh. Menyesuaikan refresh rate dan sampling rate touchscreen secara dinamis sesuai intensitas gameplay.',
@@ -1747,8 +1561,8 @@ window.runInject=runInject;
 
   function gi(id){return document.getElementById(id);}
   function _toLogin(){var sp=gi('sp'),lg=gi('lg');sp.classList.add('out');setTimeout(function(){sp.classList.remove('on','out');lg.classList.add('on');},380);}
-  function _toGS(){var sp=gi('sp'),gs=gi('gs');sp.classList.add('out');setTimeout(function(){sp.classList.remove('on','out');gs.classList.add('on');},380);}
-  function _lgToGS(){var lg=gi('lg'),gs=gi('gs');lg.classList.add('out');setTimeout(function(){lg.classList.remove('on','out');gs.classList.add('on');},380);}
+  function _toPanel(){var sp=gi('sp'),mp=gi('mp');sp.classList.add('out');setTimeout(function(){sp.classList.remove('on','out');mp.classList.add('on');if(window.buildFeats)window.buildFeats();},380);}
+  function _lgToPanel(){var lg=gi('lg'),mp=gi('mp');lg.classList.add('out');setTimeout(function(){lg.classList.remove('on','out');mp.classList.add('on');if(window.buildFeats)window.buildFeats();},380);}
 
   window._fbAfterSplash=function(){
     var s=JSON.parse(localStorage.getItem('_zxprv_sess')||'null');
@@ -1757,7 +1571,7 @@ window.runInject=runInject;
       .then(function(snap){
         if(snap.exists&&snap.data().active&&snap.data().deviceId===s.did){
           db.collection('sessions').doc(s.did).set({online:true,panel:PANEL,lastSeen:firebase.firestore.FieldValue.serverTimestamp()},{merge:true}).catch(function(){});
-          startHB(s.did);_toGS();
+          startHB(s.did);_toPanel();
         } else {localStorage.removeItem('_zxprv_sess');_toLogin();}
       }).catch(function(){_toLogin();});
   };
@@ -1806,7 +1620,7 @@ window.runInject=runInject;
             if(window.SFX)window.SFX.ok();
             fb.textContent='ACCESS GRANTED — WELCOME TO ZX PRIVATE';fb.className='auth-fb ok';
             if(window.toast)window.toast('ACCESS GRANTED','s',1800);
-            setTimeout(_lgToGS,1100);
+            setTimeout(_lgToPanel,1100);
           }).catch(function(err){
             fb.textContent='ERROR: '+err.message;fb.className='auth-fb no';
             btn.disabled=false;bt.textContent='VERIFY AND UNLOCK';
